@@ -23,10 +23,17 @@ namespace Goku
 
         private void LerArquivo(string caminho)
         {
+            string arquivo;
+            string[] linhas;
             using (StreamReader reader = new StreamReader(caminho))
             {
-                
+                arquivo = reader.ReadToEnd();
+                reader.Close();
             }
+            arquivo = arquivo.Replace("\n", null);
+            linhas = arquivo.Split('\r');
+            
+            
         }
     }
 }

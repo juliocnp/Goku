@@ -51,8 +51,15 @@
     <Compile Include="Arquivo.Designer.cs">
       <DependentUpon>Arquivo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estruturas.cs" />
+    <Compile Include="Galeria.cs" />
+    <Compile Include="Goku.cs" />
+    <Compile Include="Magia.cs" />
+    <Compile Include="Masmorra.cs" />
+    <Compile Include="Monstro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Salao.cs" />
     <EmbeddedResource Include="Arquivo.resx">
       <DependentUpon>Arquivo.cs</DependentUpon>
     </EmbeddedResource>
