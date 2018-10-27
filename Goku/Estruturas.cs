@@ -4,11 +4,11 @@ namespace Goku
 {
     static class Estruturas
     {
-        static public List<Masmorra> Masmorras;
+        static public List<CasoDeTeste> Casos;
 
         static Estruturas()
         {
-            Masmorras = new List<Masmorra>();
+            Casos = new List<CasoDeTeste>();
         }
     }
 }

@@ -9,26 +9,26 @@ namespace Goku
     class Salao
     {
         public int NumeroSalao;
-        public Monstro[] Monstros;
-        public Galeria[] Galeria;
+        public List<Monstro> Monstros;
+        public List<Galeria> Galeria;
 
         public Salao(int NumeroSalao, Monstro[] Monstros, Galeria[] Galeria)
         {
             this.NumeroSalao = NumeroSalao;
-            this.Monstros = Monstros;
-            this.Galeria = Galeria;
+            this.Monstros = new List<Monstro>();
+            this.Galeria = new List<Galeria>();
         }
 
         public Salao(int NumeroSalao, Monstro[] Monstros)
         {
             this.NumeroSalao = NumeroSalao;
-            this.Monstros = Monstros;
+            this.Monstros = new List<Monstro>();
         }
 
         public Salao(int NumeroSalao, Galeria[] Galeria)
         {
             this.NumeroSalao = NumeroSalao;
-            this.Galeria = Galeria;
+            this.Galeria = new List<Galeria>();
         }
 
         public Salao(int NumeroSalao)

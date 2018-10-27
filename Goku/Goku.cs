@@ -8,11 +8,13 @@ namespace Goku
 {
     class Goku
     {
-        public Magia[] Magias;
+        public List<Magia> Magias;
 
-        public Goku() { }
+        public Goku() {
+            Magias = new List<Magia>();
+        }
 
-        public Goku(Magia[] Magias)
+        public Goku(List<Magia> Magias)
         {
             this.Magias = Magias;
         }

@@ -55,7 +55,7 @@
     <Compile Include="Galeria.cs" />
     <Compile Include="Goku.cs" />
     <Compile Include="Magia.cs" />
-    <Compile Include="Masmorra.cs" />
+    <Compile Include="CasoDeTeste.cs" />
     <Compile Include="Monstro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
