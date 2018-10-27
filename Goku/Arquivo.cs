@@ -37,10 +37,10 @@ namespace Goku
 
         private static void CriarObjetos(string[] linhas)
         {
-            int linhaCont = 0;
+            int linhaCont = -1;
             do
             {
-                string[] linha = linhas[linhaCont].Split(' ');
+                string[] linha = linhas[++linhaCont].Split(' ');
                 CasoDeTeste _teste = new CasoDeTeste(int.Parse(linha[0]), int.Parse(linha[1]), int.Parse(linha[2]), int.Parse(linha[3]));
                 if (_teste.NumeroGaleria == 0 && _teste.NumeroMagia == 0 && _teste.NumeroMonstro == 0 && _teste.NumeroSalao == 0)
                     break;
