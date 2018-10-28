@@ -49,6 +49,13 @@ namespace Goku
             return textAux;
         }
 
+        /// <summary>
+        /// Para uma lista de magias e monstros, verifica o menor custo de ki possível
+        /// para matar o monstro
+        /// </summary>
+        /// <param name="monstro">Alvo</param>
+        /// <param name="magias">Magias possíveis para serem usadas no monstro</param>
+        /// <returns></returns>
         public int CalcularMenorCusto(Monstro monstro, List<Magia> magias)
         {
             if (magias == null || monstro == null) return 0;
