@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Goku
 {
-    class CasoDeTeste
+    public class CasoDeTeste
     {
         public List<Galeria> Galerias;
         public List<Salao> Saloes;
@@ -47,6 +47,48 @@ namespace Goku
                 });
             });
             return textAux;
+        }
+
+        public int CalcularMenorCusto(Monstro monstro, List<Magia> magias)
+        {
+            if (magias == null || monstro == null) return 0;
+
+            List<int> custos = new List<int>();
+            int numeroDeUsos = 0;
+            int vidaRestante = 0;
+            int manaUsada = 0;
+
+            foreach (Magia magia in magias)
+            {
+                if(vidaRestante == 0)
+                {
+                    if (monstro.Vida % magia.Dano == 0)
+                    {
+                        numeroDeUsos = monstro.Vida / magia.Dano;
+                        custos.Add(numeroDeUsos * magia.Ki);
+                        manaUsada = vidaRestante = numeroDeUsos = 0;
+                    }
+                    else
+                    {
+                        manaUsada = numeroDeUsos * magia.Ki;
+                        vidaRestante = monstro.Vida % magia.Dano;
+                    }
+                } else
+                {
+                    numeroDeUsos = vidaRestante / magia.Dano;
+                    if (vidaRestante % magia.Dano == 0)
+                    {
+                        custos.Add(numeroDeUsos * magia.Ki + manaUsada);
+                        manaUsada = vidaRestante = numeroDeUsos = 0;
+                    } else
+                    {
+                        vidaRestante = vidaRestante % magia.Dano;
+                    }
+                }
+            }
+            custos.Sort();
+            if (custos.Count > 0) return custos[0];
+            return 0;
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Goku
+﻿namespace Goku
 {
-    class Galeria
+    public class Galeria
     {
         public Salao Salao1;
         public Salao Salao2;
