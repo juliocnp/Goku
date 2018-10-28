@@ -55,34 +55,57 @@ namespace Goku
 
             List<int> custos = new List<int>();
             int numeroDeUsos = 0;
-            int vidaRestante = 0;
+            int vidaRestante = monstro.Vida;
             int manaUsada = 0;
 
-            foreach (Magia magia in magias)
+            // Verifica se existe pelo menos 1 magia válida (Tem dano e ki maior que 0)
+            // se Todas não forem válidas. é retornado 0 
+            if (magias.FindAll(magia => magia.Dano <= 0 || magia.Ki <= 0).Count == magias.Count) return 0;
+
+            // O cálculo do menor custo acontece até a vida do monstro chegar a 0
+            while (vidaRestante > 0)
             {
-                if(vidaRestante == 0)
+                // Para saber o menor custo, é necessário percorrer todas as magias
+                foreach (Magia magia in magias)
                 {
-                    if (monstro.Vida % magia.Dano == 0)
+                    // A validação acima verifica se TODAS as magias são inválidas
+                    // A verificação abaixo olha se a magia atual do loop é válida
+                    if (magia != null && magia.Ki > 0 && magia.Dano > 0)
                     {
-                        numeroDeUsos = monstro.Vida / magia.Dano;
-                        custos.Add(numeroDeUsos * magia.Ki);
-                        manaUsada = vidaRestante = numeroDeUsos = 0;
-                    }
-                    else
-                    {
-                        manaUsada = numeroDeUsos * magia.Ki;
-                        vidaRestante = monstro.Vida % magia.Dano;
-                    }
-                } else
-                {
-                    numeroDeUsos = vidaRestante / magia.Dano;
-                    if (vidaRestante % magia.Dano == 0)
-                    {
-                        custos.Add(numeroDeUsos * magia.Ki + manaUsada);
-                        manaUsada = vidaRestante = numeroDeUsos = 0;
-                    } else
-                    {
-                        vidaRestante = vidaRestante % magia.Dano;
+                        if (vidaRestante == monstro.Vida)
+                        {
+                            // A magia consegue matar o monstro com um único "lançamento"
+                            // Se conseguir, o ki gasto por ela é adicionado na lista e o método
+                            // verifica as outras magias
+                            if (monstro.Vida % magia.Dano == 0)
+                            {
+                                numeroDeUsos = monstro.Vida / magia.Dano;
+                                custos.Add(numeroDeUsos * magia.Ki);
+                                manaUsada = numeroDeUsos = 0;
+                            }
+                            else
+                            {
+                                manaUsada = monstro.Vida / magia.Dano * magia.Ki;
+                                vidaRestante = monstro.Vida % magia.Dano;
+                            }
+                        }
+                        // Quando a vida do monstro não for igual a vida restante
+                        // Significa que já foi usada uma magia nele e agora é necessário
+                        // Calcular o quanto falta para mata-lo
+                        else
+                        {
+                            numeroDeUsos = vidaRestante / magia.Dano;
+                            if (numeroDeUsos == 0) numeroDeUsos = 1;
+                            if (vidaRestante % magia.Dano == 0 || vidaRestante < magia.Dano)
+                            {
+                                custos.Add(numeroDeUsos * magia.Ki + manaUsada);
+                                manaUsada = vidaRestante = numeroDeUsos = 0;
+                            }
+                            else
+                            {
+                                vidaRestante = vidaRestante % magia.Dano;
+                            }
+                        }
                     }
                 }
             }
