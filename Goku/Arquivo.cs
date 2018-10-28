@@ -18,6 +18,9 @@ namespace Goku
                 opf.ShowDialog();
                 var caminho = opf.FileName;
                 this.LerArquivo(caminho);
+                this.Hide();
+                Resultados resultados = new Resultados();
+                resultados.Show();
             }
         }
 
