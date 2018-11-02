@@ -2,7 +2,7 @@
 
 namespace Goku
 {
-    static class Estruturas
+    public static class Estruturas
     {
         static public List<CasoDeTeste> Casos;
 

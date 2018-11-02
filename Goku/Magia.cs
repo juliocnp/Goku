@@ -2,7 +2,7 @@
 
 namespace Goku
 {
-    class Magia
+    public class Magia
     {
         public int Ki;
         public int Dano;

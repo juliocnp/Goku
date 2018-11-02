@@ -2,7 +2,7 @@
 
 namespace Goku
 {
-    class Salao
+    public class Salao
     {
         public int NumeroSalao;
         public List<Monstro> Monstros;

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Goku
+﻿namespace Goku
 {
-    class Monstro
+    public class Monstro
     {
         public Salao Salao;
         public int Vida;
