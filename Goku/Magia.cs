@@ -1,4 +1,6 @@
-﻿namespace Goku
+﻿using System;
+
+namespace Goku
 {
     class Magia
     {
@@ -20,6 +22,11 @@
                 this.Dano = 1000;
             else
                 this.Dano = Dano;
+        }
+
+        public int QuantidadeMagiaPorMonstro(Monstro monstro)
+        {
+            return (int)Math.Ceiling((decimal)monstro.Vida / Dano);
         }
     }
 }

@@ -35,5 +35,15 @@ namespace Goku
             this.Monstros = new List<Monstro>();
             this.Galeria = new List<Galeria>();
         }
+
+        public int Combate (Goku goku)
+        {
+            int kiNecessario = 0;
+            this.Monstros.ForEach(monstro =>
+            {
+                kiNecessario += monstro.CombaterMonstro(monstro, goku);
+            });
+            return kiNecessario;
+        }
     }
 }
