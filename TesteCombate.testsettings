@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings id="9d8def5b-a6ca-4681-82c5-bafd2fe79d21" name="TesteCombate" enableDefaultDataCollectors="false" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description><!--_locID_text="Description1"-->Estas são configurações padrão de teste para uma execução local de testes.</Description>
+  <Deployment enabled="false"/>
+</TestSettings>

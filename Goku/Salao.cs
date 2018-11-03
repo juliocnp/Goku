@@ -41,7 +41,10 @@ namespace Goku
             int kiNecessario = 0;
             this.Monstros.ForEach(monstro =>
             {
-                kiNecessario += monstro.CombaterMonstro(monstro, goku);
+                int melhorKi;
+                List<Magia> melhorCombinacaoMagias;
+                monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacaoMagias, out melhorKi);
+                kiNecessario += melhorKi;
             });
             return kiNecessario;
         }
