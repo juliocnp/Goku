@@ -21,11 +21,141 @@ namespace Goku
                 this.textBoxTestes.Text += Estruturas.Casos[i].Imprimir();
                 this.textBoxTestes.Text += Environment.NewLine;
             }
+            this.radioButtonForcaBruta.Checked = true;
         }
 
         private void Resultados_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int melhorKi = 0;
+            this.textBoxResultados.Text = "";
+            // metodo
+            // FB = Força Brutta
+            // GL = Guloso
+            // DN = Dinamico
+            for (int i = 0; i < Estruturas.Casos.Count; i++)
+            {
+                if (this.radioButtonForcaBruta.Checked)
+                    this.Djikstra(Estruturas.Casos[i], out melhorKi, "FB");
+                else if (this.radioButtonGuloso.Checked)
+                    this.Djikstra(Estruturas.Casos[i], out melhorKi, "GL");
+                else
+                    this.Djikstra(Estruturas.Casos[i], out melhorKi, "DN");
+
+                if (melhorKi == int.MaxValue)
+                    this.textBoxResultados.Text += "-1" + Environment.NewLine;
+                else
+                    this.textBoxResultados.Text += melhorKi.ToString() + Environment.NewLine;
+            }
+        }
+
+        private void Djikstra (CasoDeTeste teste, out int melhorKi, string metodo)
+        {
+            Salao origem = teste.Saloes[0];
+            List<List<Salao>> caminho = new List<List<Salao>>();
+            List<int> gastoKi = new List<int>();
+            melhorKi = 0;
+            int[,] tabelaDinamica = new int[0, 0];
+            if (metodo == "DN")
+                tabelaDinamica = this.PreencherTabelaDinamica(teste);
+
+            for (int i = 0; i < teste.Saloes.Count; i++)
+            {
+                gastoKi.Add(int.MaxValue);
+                caminho.Add(new List<Salao>());
+            }
+
+            gastoKi[0] = 0;
+
+            while (true)
+            {
+                Salao selecionado = null;
+                int menorGastoKi = int.MaxValue;
+                for (int i = 0; i < gastoKi.Count; i++)
+                {
+                    if (menorGastoKi >= gastoKi[i] && !teste.Saloes[i].visitado)
+                    {
+                        menorGastoKi = gastoKi[i];
+                        selecionado = teste.Saloes[i];
+                    }
+                }
+                if (selecionado == null)
+                    break;
+                selecionado.visitado = true;
+                selecionado.Galeria.ForEach(galeria =>
+                {
+                    Salao vizinho;
+                    if (galeria.Salao1 == selecionado)
+                        vizinho = galeria.Salao2;
+                    else
+                        vizinho = galeria.Salao1;
+                    if (!vizinho.visitado)
+                    {
+                        int indexVizinho = teste.Saloes.IndexOf(vizinho);
+                        int indexSelecionado = teste.Saloes.IndexOf(selecionado);
+                        if (gastoKi[indexSelecionado] + teste.Saloes[indexSelecionado].Combate(teste.Goku, tabelaDinamica,  metodo) < gastoKi[indexVizinho])
+                        {
+                            gastoKi[indexVizinho] = gastoKi[indexSelecionado] + teste.Saloes[indexSelecionado].Combate(teste.Goku, tabelaDinamica, metodo);
+                            caminho[indexVizinho] = caminho[indexSelecionado];
+                            caminho[indexVizinho].Add(teste.Saloes[indexVizinho]);
+                            teste.Saloes[indexSelecionado].visitado = true;
+                        }
+                    }
+                });
+                
+                bool verticesNaoVisitados = false;
+                for (int i = 0; i < teste.Saloes.Count; i++)
+                    if (!teste.Saloes[i].visitado)
+                        verticesNaoVisitados = true;
+
+                if (!verticesNaoVisitados)
+                    break;
+
+                selecionado = null;
+            }
+
+            melhorKi = gastoKi[teste.Saloes.Count - 1];
+        }
+
+        private int[,] PreencherTabelaDinamica(CasoDeTeste casoDeTeste)
+        {
+            int[,] tabela;
+            List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(casoDeTeste.Goku.Magias);
+            int maiorVidaMonstro = int.MinValue;
+            maiorVidaMonstro = casoDeTeste.getMaiorVidaMonstro();
+            if (maiorVidaMonstro == int.MinValue)
+            {
+                maiorVidaMonstro = 0;
+                tabela = new int[casoDeTeste.Goku.Magias.Count, maiorVidaMonstro + 1];
+            }
+            else
+                tabela = new int[casoDeTeste.Goku.Magias.Count, maiorVidaMonstro + 1];
+
+            for (int i = 0; i < tabela.GetLength(0); i++)
+            {
+                for (int j = 0; j < tabela.GetLength(1); j++)
+                {
+                    if (i == 0)
+                    {
+                        int dano = 0;
+                        while (dano < j)
+                        {
+                            dano += magiasOrdenadas[i].Dano;
+                            tabela[i, j] += magiasOrdenadas[i].Ki;
+                        }
+                    }
+                    else if (j < magiasOrdenadas[i].Dano)
+                        tabela[i, j] = tabela[i - 1, j];
+                    else
+                        tabela[i, j] = Math.Min(tabela[i - 1, j], tabela[i, j - magiasOrdenadas[i].Dano] + magiasOrdenadas[i].Ki);
+                }
+            }
+
+            return tabela;
         }
     }
 }

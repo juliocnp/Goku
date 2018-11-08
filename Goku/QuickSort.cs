@@ -46,5 +46,43 @@ namespace Goku
             return (part + 1);
         }
 
+
+        public static List<Salao> MetodoQuickSortSaloes(List<Salao> salao)
+        {
+            MetodoQuickSortSaloes(salao, 0, salao.Count - 1);
+            return salao;
+        }
+
+        private static void MetodoQuickSortSaloes(List<Salao> salao, int inicio, int fim)
+        {
+            int part;
+            if (inicio < fim)
+            {
+                part = ParticaoSaloes(salao, inicio, fim);
+                MetodoQuickSortSaloes(salao, inicio, part - 1);
+                MetodoQuickSortSaloes(salao, part + 1, fim);
+            }
+        }
+
+        private static int ParticaoSaloes(List<Salao> salao, int inicio, int fim)
+        {
+            Salao aux;
+            Salao pivot = salao[fim];
+            int part = inicio - 1;
+            for (int i = inicio; i < fim; i++)
+            {
+                if (salao[i].NumeroSalao < pivot.NumeroSalao)
+                {
+                    part = part + 1;
+                    aux = salao[part];
+                    salao[part] = salao[i];
+                    salao[i] = aux;
+                }
+            }
+            aux = salao[part + 1];
+            salao[part + 1] = salao[fim];
+            salao[fim] = aux;
+            return (part + 1);
+        }
     }
 }

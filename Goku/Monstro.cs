@@ -36,6 +36,31 @@ namespace Goku
             this.Salao = Salao;
         }
 
+        public void CombaterMonstroDinamico (Goku goku, int[,] tabelaDinamica, out int melhorKi)
+        {
+            melhorKi = tabelaDinamica[tabelaDinamica.GetLength(0) - 1, this.Vida];
+        }
+
+        public void CombaterMonstroGuloso(Goku goku, out List<Magia> melhorCombinacao, out int melhorKi)
+        {
+            List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(goku.Magias), magiasUsadas = new List<Magia>();
+            int dano = 0, i = magiasOrdenadas.Count - 1;
+
+            while (this.Vida >= dano)
+            {
+                if (magiasOrdenadas[i - 1].Dano >= this.Vida)
+                    i--;
+                else
+                {
+                    magiasUsadas.Add(magiasOrdenadas[i]);
+                    dano += magiasOrdenadas[i].Dano;
+                }
+            }
+
+            melhorCombinacao = magiasUsadas;
+            melhorKi = dano;
+        }
+
         public void CombaterMonstroForcaBruta(Goku goku, out List<Magia> melhorCombinacao, out int melhorKi)
         {
             List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(goku.Magias);
