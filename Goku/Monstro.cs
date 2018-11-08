@@ -136,7 +136,7 @@ namespace Goku
         private static void AdicionarResultadosNasListas(List<List<Magia>> combinacaoMagias, List<int> combinacaoKi, List<string> textoCombinacaoMagias, List<Magia> listaSequencia, string texto, int ki)
         {
             combinacaoMagias.Add(listaSequencia);
-            textoCombinacaoMagias.Add(texto);
+            //textoCombinacaoMagias.Add(texto);
             combinacaoKi.Add(ki);
         }
 
@@ -145,7 +145,7 @@ namespace Goku
             while (dano < this.Vida)
             {// preenchendo com magias nivel 0 se o dano nao for suficiente
                 listaSequencia.Add(magiasOrdenadas[0]);
-                texto += "1, ";
+                //texto += "1, ";
                 dano += magiasOrdenadas[0].Dano;
                 ki += magiasOrdenadas[0].Ki;
                 preencheuMagia0 = true;
@@ -159,7 +159,7 @@ namespace Goku
                 for (int j = 0; j < quantidadeMagias[i]; j++)
                 {
                     listaSequencia.Add(magiasOrdenadas[i]);
-                    texto += (i + 1).ToString() + ", ";
+                    //texto += (i + 1).ToString() + ", ";
                     dano += magiasOrdenadas[i].Dano;
                     ki += magiasOrdenadas[i].Ki;
                     menorUsada = i;

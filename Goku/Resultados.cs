@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,8 @@ namespace Goku
             // DN = Dinamico
             for (int i = 0; i < Estruturas.Casos.Count; i++)
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 if (this.radioButtonForcaBruta.Checked)
                     this.Djikstra(Estruturas.Casos[i], out melhorKi, "FB");
                 else if (this.radioButtonGuloso.Checked)
@@ -50,6 +53,9 @@ namespace Goku
                     this.textBoxResultados.Text += "-1" + Environment.NewLine;
                 else
                     this.textBoxResultados.Text += melhorKi.ToString() + Environment.NewLine;
+
+                sw.Stop();
+                //this.textBoxResultados.Text += "Timer: " + (sw.ElapsedMilliseconds).ToString() + Environment.NewLine;
             }
         }
 
