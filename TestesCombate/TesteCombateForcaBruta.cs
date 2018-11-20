@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestesCombate
 {
     [TestClass]
-    public class CombateForcaBruta
+    public class TesteCombateForcaBruta
     {
         [TestMethod]
         public void TesteSucesso()

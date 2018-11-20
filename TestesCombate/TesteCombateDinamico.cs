@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestesCombate
 {
     [TestClass]
-    public class CombateDinamico
+    public class TesteCombateDinamico
     {
         [TestMethod]
         public void TesteSucesso()

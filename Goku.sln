@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goku", "Goku\Goku.csproj", "{5F32C6AF-D329-4D2C-A9B0-6801ABFDEDA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesCombate", "TestesCombate\TestesCombate.csproj", "{DE0F736C-04E6-4206-B544-FF498836679D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "TestesCombate\Testes.csproj", "{DE0F736C-04E6-4206-B544-FF498836679D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
