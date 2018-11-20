@@ -36,13 +36,25 @@ namespace Goku
             this.Salao = Salao;
         }
 
-        public void CombaterMonstroDinamico (Goku goku, int[,] tabelaDinamica, out int melhorKi)
+        public void CombaterMonstroDinamico (int[,] tabelaDinamica, out int melhorKi)
         {
+            if (tabelaDinamica == null || tabelaDinamica.GetLength(0) == 0 || tabelaDinamica.GetLength(1) == 0)
+            {
+                melhorKi = -1;
+                return;
+            }
             melhorKi = tabelaDinamica[tabelaDinamica.GetLength(0) - 1, this.Vida];
         }
 
         public void CombaterMonstroGuloso(Goku goku, out List<Magia> melhorCombinacao, out int melhorKi)
         {
+            if (ValidarEntrada(goku))
+            {
+                melhorCombinacao = new List<Magia>();
+                melhorKi = -1;
+                return;
+            }
+
             List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(goku.Magias), magiasUsadas = new List<Magia>();
             int dano = 0, i = magiasOrdenadas.Count - 1;
 
@@ -61,8 +73,21 @@ namespace Goku
             melhorKi = dano;
         }
 
+        private static bool ValidarEntrada(Goku goku)
+        {
+            if (goku == null || goku.Magias == null || goku.Magias.Count == 0)
+                return true;
+            else return false;
+        }
+
         public void CombaterMonstroForcaBruta(Goku goku, out List<Magia> melhorCombinacao, out int melhorKi)
         {
+            if (ValidarEntrada(goku))
+            {
+                melhorCombinacao = new List<Magia>();
+                melhorKi = -1;
+                return;
+            }
             List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(goku.Magias);
             List<int> quantidadeMagias = new List<int>();
             List<List<Magia>> combinacaoMagias = new List<List<Magia>>();

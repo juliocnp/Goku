@@ -53,7 +53,7 @@ namespace Goku
                 else if (metodo == "GL")
                     monstro.CombaterMonstroGuloso(goku, out melhorCombinacaoMagias, out melhorKi);
                 else
-                    monstro.CombaterMonstroDinamico(goku, tabelaDinamica, out melhorKi);
+                    monstro.CombaterMonstroDinamico(tabelaDinamica, out melhorKi);
                 kiNecessario += melhorKi;
             });
             return kiNecessario;

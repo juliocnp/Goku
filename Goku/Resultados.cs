@@ -67,7 +67,7 @@ namespace Goku
             melhorKi = 0;
             int[,] tabelaDinamica = new int[0, 0];
             if (metodo == "DN")
-                tabelaDinamica = this.PreencherTabelaDinamica(teste);
+                tabelaDinamica = Estruturas.PreencherTabelaDinamica(teste);
 
             for (int i = 0; i < teste.Saloes.Count; i++)
             {
@@ -125,43 +125,6 @@ namespace Goku
             }
 
             melhorKi = gastoKi[teste.Saloes.Count - 1];
-        }
-
-        private int[,] PreencherTabelaDinamica(CasoDeTeste casoDeTeste)
-        {
-            int[,] tabela;
-            List<Magia> magiasOrdenadas = QuickSort.MetodoQuickSort(casoDeTeste.Goku.Magias);
-            int maiorVidaMonstro = int.MinValue;
-            maiorVidaMonstro = casoDeTeste.getMaiorVidaMonstro();
-            if (maiorVidaMonstro == int.MinValue)
-            {
-                maiorVidaMonstro = 0;
-                tabela = new int[casoDeTeste.Goku.Magias.Count, maiorVidaMonstro + 1];
-            }
-            else
-                tabela = new int[casoDeTeste.Goku.Magias.Count, maiorVidaMonstro + 1];
-
-            for (int i = 0; i < tabela.GetLength(0); i++)
-            {
-                for (int j = 0; j < tabela.GetLength(1); j++)
-                {
-                    if (i == 0)
-                    {
-                        int dano = 0;
-                        while (dano < j)
-                        {
-                            dano += magiasOrdenadas[i].Dano;
-                            tabela[i, j] += magiasOrdenadas[i].Ki;
-                        }
-                    }
-                    else if (j < magiasOrdenadas[i].Dano)
-                        tabela[i, j] = tabela[i - 1, j];
-                    else
-                        tabela[i, j] = Math.Min(tabela[i - 1, j], tabela[i, j - magiasOrdenadas[i].Dano] + magiasOrdenadas[i].Ki);
-                }
-            }
-
-            return tabela;
         }
     }
 }

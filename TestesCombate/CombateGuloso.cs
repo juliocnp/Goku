@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestesCombate
 {
     [TestClass]
-    public class CombateForcaBruta
+    public class CombateGuloso
     {
         [TestMethod]
         public void TesteSucesso()
@@ -23,9 +23,9 @@ namespace TestesCombate
             List<Magia> melhorCombinacao;
             int melhorKi;
 
-            monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacao, out melhorKi);
+            monstro.CombaterMonstroGuloso(goku, out melhorCombinacao, out melhorKi);
 
-            Assert.AreEqual(melhorKi, 45);
+            Assert.AreEqual(melhorKi, 750);
         }
 
         [TestMethod]
@@ -45,9 +45,9 @@ namespace TestesCombate
             List<Magia> melhorCombinacao;
             int melhorKi;
 
-            monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacao, out melhorKi);
+            monstro.CombaterMonstroGuloso(goku, out melhorCombinacao, out melhorKi);
 
-            Assert.AreEqual(melhorKi, 60);
+            Assert.AreEqual(melhorKi, 1050);
         }
 
         [TestMethod]
@@ -69,9 +69,9 @@ namespace TestesCombate
             List<Magia> melhorCombinacao;
             int melhorKi;
 
-            monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacao, out melhorKi);
+            monstro.CombaterMonstroGuloso(goku, out melhorCombinacao, out melhorKi);
 
-            Assert.AreEqual(melhorKi, 60);
+            Assert.AreEqual(melhorKi, 900);
         }
 
         [TestMethod]
@@ -117,9 +117,9 @@ namespace TestesCombate
             List<Magia> melhorCombinacao;
             int melhorKi;
 
-            monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacao, out melhorKi);
+            monstro.CombaterMonstroGuloso(goku, out melhorCombinacao, out melhorKi);
 
-            Assert.AreEqual(melhorKi, 150);
+            Assert.AreEqual(melhorKi, 330);
         }
 
         [TestMethod]
@@ -136,9 +136,9 @@ namespace TestesCombate
             List<Magia> melhorCombinacao;
             int melhorKi;
 
-            monstro.CombaterMonstroForcaBruta(goku, out melhorCombinacao, out melhorKi);
+            monstro.CombaterMonstroGuloso(goku, out melhorCombinacao, out melhorKi);
 
-            Assert.AreEqual(melhorKi, 10);
+            Assert.AreEqual(melhorKi, 1100);
         }
 
         [TestMethod]
