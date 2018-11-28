@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Goku;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestesCombate
 {
-    [TestClass]
-    public class TesteLerArquivoECriarObjetos
+    public static class MockArquivo
     {
-        [TestMethod]
-        public void TesteSucesso()
+        public static string Arquivo1 ()
         {
-            var texto = @"3 4 4 2
+            return @"3 4 4 2
 7 10
 13 20
 25 50
@@ -35,15 +34,11 @@ namespace TestesCombate
 1 2
 3 1000
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsTrue(resultado);
         }
 
-        [TestMethod]
-        public void TesteSucesso1()
+        public static string Arquivo2()
         {
-            var texto = @"10 20 20 40
+            return @"10 20 20 40
 11 22
 12 24
 13 26
@@ -257,15 +252,11 @@ namespace TestesCombate
 20 500
 20 500
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsTrue(resultado);
         }
 
-        [TestMethod]
-        public void TesteSucesso2()
+        public static string Arquivo3()
         {
-            var texto = @"3 4 4 2
+            return @"3 4 4 2
 -7 10
 -13 -20
 25 -50
@@ -289,15 +280,11 @@ namespace TestesCombate
 1 2
 3 1000
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsTrue(resultado);
         }
 
-        [TestMethod]
-        public void TesteErro()
+        public static string Arquivo4()
         {
-            var texto = @"3 4 4 2,
+            return @"3 4 4 2,
 7 10,
 13 20,
 25 50,
@@ -321,24 +308,16 @@ namespace TestesCombate
 1 2,
 3 1000,
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsFalse(resultado);
         }
 
-        [TestMethod]
-        public void TesteErro1()
+        public static string Arquivo5()
         {
-            var texto = @"dsadsadsadsadsads";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsFalse(resultado);
+            return @"dsadsadsadsadsads";
         }
 
-        [TestMethod]
-        public void TesteErro2()
+        public static string Arquivo6()
         {
-            var texto = @"1 1 1 1
+            return @"1 1 1 1
 7 10
 13 20
 25 50
@@ -362,15 +341,11 @@ namespace TestesCombate
 1 2
 3 1000
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsFalse(resultado);
         }
 
-        [TestMethod]
-        public void TesteErro3()
+        public static string Arquivo7()
         {
-            var texto = @"3a 4 4 2
+            return @"3a 4 4 2
 7 10
 13 20
 25 50
@@ -394,9 +369,6 @@ namespace TestesCombate
 1 2
 3 1000
 0 0 0 0";
-
-            bool resultado = Estruturas.LerArquivo(null, texto);
-            Assert.IsFalse(resultado);
         }
     }
 }

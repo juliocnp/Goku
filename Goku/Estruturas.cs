@@ -53,43 +53,27 @@ namespace Goku
             return tabela;
         }
 
-        public static bool LerArquivo(string caminho)
+        public static void LerArquivo(string caminho)
         {
-            try
+            string arquivo;
+            string[] linhas;
+            using (StreamReader reader = new StreamReader(caminho))
             {
-                string arquivo;
-                string[] linhas;
-                using (StreamReader reader = new StreamReader(caminho))
-                {
-                    arquivo = reader.ReadToEnd();
-                    reader.Close();
-                }
-                arquivo = arquivo.Replace("\n", null);
-                linhas = arquivo.Split('\r');
-                CriarObjetos(linhas);
-                return true;
+                arquivo = reader.ReadToEnd();
+                reader.Close();
             }
-            catch (Exception err)
-            {
-                return false;
-            }
+            arquivo = arquivo.Replace("\n", null);
+            linhas = arquivo.Split('\r');
+            CriarObjetos(linhas);
         }
 
-        public static bool LerArquivo(string caminho, string texto)
+        public static void LerArquivo(string caminho, string texto)
         {
-            try
-            {
-                string arquivo = texto;
-                string[] linhas;
-                arquivo = arquivo.Replace("\n", null);
-                linhas = arquivo.Split('\r');
-                CriarObjetos(linhas);
-                return true;
-            }
-            catch (Exception err)
-            {
-                return false;
-            }
+            string arquivo = texto;
+            string[] linhas;
+            arquivo = arquivo.Replace("\n", null);
+            linhas = arquivo.Split('\r');
+            CriarObjetos(linhas);
         }
 
         private static void CriarObjetos(string[] linhas)

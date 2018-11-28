@@ -17,10 +17,22 @@ namespace Goku
             {
                 opf.ShowDialog();
                 var caminho = opf.FileName;
-                Estruturas.LerArquivo(caminho);
-                this.Hide();
-                Resultados resultados = new Resultados();
-                resultados.Show();
+                bool validado = false;
+                try
+                {
+                    Estruturas.LerArquivo(caminho);
+                    validado = true;
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Não foi possível ler o arquivo, insira novamente.");
+                }
+                if (validado)
+                {
+                    this.Hide();
+                    Resultados resultados = new Resultados();
+                    resultados.Show();
+                }
             }
         }
     }
